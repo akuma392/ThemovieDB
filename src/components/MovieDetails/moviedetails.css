@@ -1,0 +1,245 @@
+#single-movie{
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    min-height: 50vh;
+    padding: 1.5rem 0;
+}
+
+.poster{
+    width: 20rem;
+    height: 25rem;
+    border-radius: 1rem;
+padding: 2rem;
+flex: 0 1 22%;
+}
+.movie-content{
+    flex: 0 1 74%;
+}
+.movie-hero{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.poster img{
+    width: 100%;
+    height: 100%;
+    border-radius: 0.7rem;
+}
+.movie-content h1{
+   color: white;
+   font-size: 2.4rem;
+   font-weight: 700;
+   line-height: 1.2;
+   font-family: "Gill Sans", sans-serif;
+}
+.movie-content .movie-detail{
+    color: rgb(191, 218, 236);
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    word-spacing: 3px;
+}
+.movie-content .movie-detail span{
+    margin-right: 1rem;
+}
+.overview{
+    color: white;
+    font-size: 1.2rem;
+    margin:  1rem 0 0.5rem 0;
+    font-weight: 500;
+}
+.overview + p{
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: rgba(244, 247, 250,0.6);
+    padding-right: 1rem;
+    font-family: cursive;
+}
+.read-more{
+    margin-top: 0.5rem;
+    display: inline-block;
+}
+.read-more button{
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(70, 70, 245,0.5);
+    background-color:rgba(52, 200, 245, 0.5) ;
+    border-radius: 0.5rem;
+    font-size: 00.75rem;
+}
+.read-more:hover button{
+    background-color:rgba(52, 200, 245, 0.9) ;
+    color: white;
+}
+.cast{
+    display: grid;
+   grid-template-columns: repeat(3,1fr);
+   margin-top: 1rem;
+   grid-gap: 1rem;
+}
+.cast p{
+    color: rgba(255, 255, 255,0.5);
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
+}
+.cast h5{
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.extra-details{
+    display: flex;
+    align-items: center;
+
+}
+.play-trailer{
+    margin: 1.2rem 0;
+    color: white;
+    margin-left: 4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.play-trailer a{
+    display: inline-block;
+    display: flex;
+}
+.play-trailer:hover{
+    color: rgb(117, 236, 252);
+    cursor: pointer;
+}
+.play-trailer .fas{
+    margin-right: 0.7rem;
+}
+.imdb{
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+}
+.imdb span{
+    color: white;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+}
+
+.tagline{
+    color: rgba(0, 252, 84, 0.5);
+    font-size: 0.9rem;
+    margin: 0.75rem 0;
+    font-family: OCR A Std, monospace;
+    font-weight: 500;
+}
+
+/*  */
+
+.movie-content-data{
+    display: flex;
+}
+.single-movie-main{
+    flex: 0 1 75%;
+}
+.single-movie-aside{
+    flex: 0 1 20%;
+}
+.actor-card{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 1rem;
+    grid-gap: 1.5rem;
+}
+
+.actor-card > li {
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    background-image: linear-gradient(to right, #1c1c1d, #1d1d22);
+    border-radius: 0.5rem;
+  }
+
+  .actor figcaption {
+    padding: 0.7rem;
+
+  }
+  .actor img{
+      filter: brightness(70%);
+      width: 100%;
+      height: 15rem;
+  }
+  .actor__title {
+    font-size: 1rem;
+    font-weight: normal;
+    font-variant: small-caps;
+    margin: 0;
+    word-spacing: 1px;
+    line-height: 1.2;
+  }
+  .actor:hover img{
+    filter: brightness(100%);
+  }
+  .actor:hover .actor__title{
+      color: rgb(2, 128, 245);
+  }
+  .actor:hover figcaption{
+      background-color: rgba(0, 0, 0,0.1);
+  }
+  .btn button{
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      background-color: rgb(29, 59, 124);
+      color: white;
+      border-radius: 1rem;
+
+}
+.btn{
+    display: inline-block;
+}
+.btn:hover button{
+
+    background-color: rgb(57, 79, 126);
+
+}
+
+.suggested-details{
+    margin: 2.5rem 0;
+}
+
+.suggested-details .actor-card > li {
+   height: 18rem;
+  }
+
+.suggested-details  img{
+    height: 12rem;
+}
+
+/* card */
+
+#card{
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0,0.3);
+
+    margin: 2rem 0;
+}
+#card ul{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+    background-color: rgba(151, 137, 137, 0.1);
+}
+
+#card ul li{
+   color: rgba(255, 255, 255,0.5);
+}
+#card ul li:hover{
+    color: rgba(255, 255, 255,0.9);
+    text-decoration: underline;
+ }
+
+ #card ul .active-elm{
+    /* color: rgba(255, 255, 255,0.9); */
+    color: tomato;
+    text-decoration: underline;
+
+}
