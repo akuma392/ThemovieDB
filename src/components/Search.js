@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { url, find_movie, key } from "../utils/utils";
+import { url, find_movie, key1, key2 } from "../utils/utils";
 import Loader from "./Loader";
 import Movie from "./Movie";
 
-const Search = () => {
+const Search = ({ arr }) => {
   const [results, setResults] = useState(null);
   const [value, setValue] = useState(null);
   const [data, setData] = useState(null);
@@ -13,12 +13,22 @@ const Search = () => {
   useEffect(() => {
     if (results) {
       setLoading(true);
-      fetch("https://imdb-api.com/en/API/Search/k_emd6dwx0/" + `${results}`)
-        .then((data) => data.json())
-        .then((data) => setData(data));
+      if (localValue?.expression === results) {
+        setData(localValue);
+      } else {
+        fetch(`https://imdb-api.com/en/API/Search/${key2}/` + `${results}`)
+          .then((data) => data.json())
+          .then((data) => setData(data));
+      }
     }
     setLoading(false);
   }, [results]);
+
+  const localValue = arr.find(
+    (elm) => elm?.expression?.toLowerCase() === results?.toLowerCase()
+  );
+
+  console.log(localValue, "testtttttttttttttttttttttttt");
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -29,6 +39,12 @@ const Search = () => {
       setValue("");
     }
   };
+
+  useEffect(() => {
+    if (results) {
+      localStorage.setItem(results, JSON.stringify(data));
+    }
+  }, [data]);
 
   return (
     <div className="search-elm">

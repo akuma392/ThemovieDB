@@ -3,7 +3,9 @@ export const gener =
 
 export const url = "https://imdb-api.com/en/API/";
 
-export const key = "k_emd6dwx0";
+export const key1 = "k_emd6dwx0";
+
+export const key2 = "k_li516td4";
 
 export const top_movies = "Top250Movies/";
 
@@ -15,3 +17,15 @@ export const find_movie = "SearchMovie/";
 
 export const all_details =
   "FullActor,FullCast,Posters,Images,Trailer,Ratings,Wikipedia,";
+
+export const allStorage = () => {
+  var values = [],
+    keys = Object.keys(localStorage),
+    i = keys.length;
+
+  while (i--) {
+    values.push(localStorage.getItem(keys[i]));
+  }
+
+  return values;
+};

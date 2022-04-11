@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link, Route, Routes } from "react-router-dom";
+import MovieAside from "./MovieAside";
 
 const MovieContent = ({ data }) => {
   const [loadAll, setLoadAll] = useState(false);
@@ -59,22 +60,26 @@ const MovieContent = ({ data }) => {
                 {similars.map((elm) => {
                   return (
                     <li key={elm.id}>
-                      <div className="actor">
-                        <figure>
-                          <img src={elm.image} />
-                          <figcaption>
-                            <h2 className="actor__title"> {elm.title}</h2>
-                            <p className="imdb">imDB: {elm.imDbRating}</p>
-                          </figcaption>
-                        </figure>
-                      </div>
+                      <Link to={`/movie/${elm.id}`}>
+                        <div className="actor">
+                          <figure>
+                            <img src={elm.image} />
+                            <figcaption>
+                              <h2 className="actor__title"> {elm.title}</h2>
+                              <p className="imdb">imDB: {elm.imDbRating}</p>
+                            </figcaption>
+                          </figure>
+                        </div>
+                      </Link>
                     </li>
                   );
                 })}
               </ul>
             </div>
           </section>
-          <section className="single-movie-aside"></section>
+          <section className="single-movie-aside">
+            <MovieAside data={data} />
+          </section>
         </div>
       </div>
     </div>
@@ -83,35 +88,96 @@ const MovieContent = ({ data }) => {
 
 export default MovieContent;
 
-const activeComponent = (state) => {
-  console.log(state, "swicth");
+const activeComponent = (state, data) => {
   switch (state) {
     case "plot":
-      return <Plot />;
+      return <Plot data={data} />;
     case "ratings":
-      return <Ratings />;
+      return <Ratings data={data} />;
     case "trailers":
-      return <Trailer />;
+      return <Trailer data={data} />;
 
     case "poasters":
-      return <Poasters />;
+      return <Poasters data={data} />;
     default:
-      return <Plot />;
+      return <Plot data={data} />;
   }
 };
 
 const Plot = ({ data }) => {
-  return <div>plot</div>;
+  return (
+    <div>
+      <p className="movie-plot">{data.plot}</p>
+    </div>
+  );
 };
 
 const Ratings = ({ data }) => {
-  return <div>ratings</div>;
+  return (
+    <div>
+      <div className="card-rating">
+        <li>
+          imDB: <span>{data?.imDbRating}</span>
+        </li>
+        <li>
+          imDbRatingVotes: <span>{data?.imDbRatingVotes}</span>
+        </li>
+        <li>
+          metacritic: <span>{data?.ratings?.metacritic}</span>
+        </li>
+        <li>
+          rottenTomatoes: <span>{data?.ratings?.rottenTomatoes}</span>
+        </li>
+        <li>
+          filmAffinity: <span>{data?.ratings?.filmAffinity}</span>
+        </li>
+        <li>
+          theMovieDb: <span>{data?.ratings?.theMovieDb}</span>
+        </li>
+      </div>
+
+      <div>
+        <p className="card-awards">
+          awards:
+          <span>{data?.awards}</span>
+        </p>
+      </div>
+    </div>
+  );
 };
+
+// trailer component
 const Trailer = ({ data }) => {
-  return <div>Trailer</div>;
+  return (
+    <div className="card-trailer">
+      <img src={data.trailer.thumbnailUrl} alt={data.trailer.title} />
+      <a href={data.trailer.link} target="_blank">
+        <i className="fas fa-play"></i>
+      </a>
+      <div>
+        <p>{data.trailer.videoTitle}</p>
+        <p>{data.trailer.videoDescription}</p>
+      </div>
+    </div>
+  );
 };
+
+// poster component
 const Poasters = ({ data }) => {
-  return <div>Poaster</div>;
+  return (
+    <div className="card-poaster">
+      {data?.posters?.posters
+        ?.sort(() => 0.5 - Math.random())
+        .slice(0, 10)
+        .map((elm) => {
+          return (
+            <li key={elm.id}>
+              <img src={elm.link} alt={elm.id} />
+            </li>
+          );
+        })}
+    </div>
+  );
 };
 
 const Card = ({ data }) => {
@@ -121,7 +187,7 @@ const Card = ({ data }) => {
     SetActiveState(elm.toLowerCase());
   };
   const arr = ["Plot", "Ratings", "Trailers", "Poasters"];
-  console.log(activeState, "Plot".toLowerCase(), "test");
+
   return (
     <>
       <div id="card">
@@ -139,7 +205,9 @@ const Card = ({ data }) => {
             );
           })}
         </ul>
-        {activeComponent(activeState)}
+        <div className="plot-card-content">
+          {activeComponent(activeState, data)}
+        </div>
       </div>
     </>
   );

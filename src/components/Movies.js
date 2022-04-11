@@ -1,41 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { url } from "../utils/utils";
+
 import Loader from "./Loader";
 import Movie from "./Movie";
-import { popularMovies } from "./popularMovies";
 
-const Movies = (props) => {
+const Movies = ({ movieData }) => {
   const [movies, setMovies] = useState(null);
   const [data, setData] = useState(null);
   const [loadMore, setLoadMore] = useState(false);
-  // useEffect(() => {
-  //   fetch("https://imdb-api.com/en/API/MostPopularMovies/k_emd6dwx0")
-  //     .then((data) => data.json())
-  //     .then((data) => setMovies(data));
-  // }, []);
 
-  useEffect(() => {
-    setMovies(popularMovies);
-  }, []);
   const handleLoadMore = () => {
     setLoadMore(true);
   };
-  useEffect(() => {
-    setData(movies?.items.slice(0, 50));
-  }, [movies]);
 
   useEffect(() => {
-    setData(movies?.items);
+    setData(movieData?.items.slice(0, 50));
+  }, [movieData]);
+
+  useEffect(() => {
+    setData(movieData?.items);
   }, [loadMore]);
 
-  if (!movies) {
+  if (!movieData) {
     return (
       <>
         <Loader />
       </>
     );
   }
-  console.log(data, "load more");
+
   return (
     <div id="movie-list">
       <h4>Popular Movies</h4>
