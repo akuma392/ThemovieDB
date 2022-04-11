@@ -8,8 +8,8 @@
   .bouncing-loader {
     display: flex;
     justify-content: center;
-    background-color: rgba(0, 0, 0,0.9);
-    min-height: 50vh;
+    background-color: rgba(0, 0, 0,0.1);
+    min-height: 70vh;
   }
 
   .bouncing-loader > div {
